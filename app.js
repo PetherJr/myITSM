@@ -1,20 +1,13 @@
-/**
- * Uma instância do gerenciador de dados de tarefas.
- * Seu valor é definido no método `createApp()`.
- */
+
 var manager = null;
 
-/**
- * Uma referência à tarefa que está sendo editada, se houver. 
- * Caso contrário, o valor é `null`.
- */
+
 var editando = null;
 
 /**
- * Formata a data para string, no formato: data hora.
- * 
- * @param {Date} data A data que será formatada
- * @returns A data formatada como string
+
+ * @param {Date} data 
+ * @returns
  */
 function formatarData(data) {
   return `${data.toLocaleDateString()} ${data.toLocaleTimeString()}`;
@@ -41,11 +34,10 @@ function formatarDataParaInput(data) {
 }
 
 /**
- * Calcula e retorna a diferença em dias entre a data1 e a data2.
- * 
+
  * @param {Date} data1 
  * @param {Date} data2 
- * @returns Um float que representa a diferença em dias entre as duas datas.
+ * @returns 
  */
 function diferencaDatas(data1, data2) {
   var d = data1.getTime() - data2.getTime();
@@ -54,10 +46,7 @@ function diferencaDatas(data1, data2) {
 }
 
 /**
- * Formata um número que representa a diferença entre 
- * duas datas para uma string que pode conter o 
- * número de dias e de horas.
- * 
+
  * @param {Number} d 
  * @returns {String}
  */
@@ -74,35 +63,14 @@ function formatarDiferencaDatas(d) {
   }
 }
 
-/**
- * Tratador do evento de click do botão que
- * marca uma tarefa como concluída ou desmarca como concluída
- * de acordo com a situação da tarefa relacionada.
- * 
- * O código opera da seguinte forma:
- * - obtém o valor do atributo `data-tarefas-id` do botão
- * - encontra a tarefa correspondente na lista de tarefas
- * - alterna o valor do atributo `estahConcluida`
- * - chama o método `apresentarTarefas()` para atualizar a lista das tarefas
- */
+
 function buttonConcluirTarefaClick() {
   var id = this.getAttribute('data-tarefas-id');
   manager.alternarSituacao(id);
   apresentarTarefas();
 }
 
-/**
- * Método que cria o botão de marcar a tarefa como concluída ou desfazer
- * desfazer a conclusão, de acordo com a situação da tarefa
- * informada como parâmetro `tarefa`.
- * 
- * O código opera da seguinte forma:
- * - cria um elemento `button`
- * - define o valor do atributo `innerHTML` de acordo com a situação da tarefa
- * - define o valor do atributo `data-tarefas-id` do botão como o valor do atributo `id` da `tarefa`
- * - adiciona o tratador do evento de click no botão (`buttonConcluirTarefaClick`)
- * - retorna elemento `button`.
- */
+
 function createButtonConcluir(tarefa) {
   var btn = document.createElement('button');
   btn.classList.add('icon-button');
@@ -116,9 +84,7 @@ function createButtonConcluir(tarefa) {
   return btn;
 }
 
-/**
- * Tratador do evento click para o botão excluir tarefa.
- */
+
 function buttonExcluirTarefaClick() {
   var id = this.getAttribute('data-tarefas-id');
   var tarefa = manager.encontrarTarefaPorId(id);
@@ -129,9 +95,6 @@ function buttonExcluirTarefaClick() {
 }
 
 /**
- * Cria um elemento que representa o botão que permite
- * excluir a tarefa.
- * 
  * @param {*} tarefa 
  * @returns 
  */
@@ -144,9 +107,6 @@ function createButtonExcluir(tarefa) {
   return btn;
 }
 
-/**
- * Tratador do evento click para o botão editar tarefa.
- */
 function buttonEditarTarefaClick() {
   var id = this.getAttribute('data-tarefas-id');
   editando = manager.encontrarTarefaPorId(id);
@@ -158,8 +118,6 @@ function buttonEditarTarefaClick() {
 }
 
 /**
- * Cria um elemento representando o botão que permite editar a tarefa.
- * 
  * @param {*} tarefa 
  * @returns 
  */
@@ -175,14 +133,6 @@ function createButtonEditar(tarefa) {
   return btn;
 }
 
-/**
- * Tratador do evento de click do botão cancelar o formulário.
- * 
- * Se o formulário estiver no modo de edição de uma tarefa,
- * então este tratador de evento altera o título do
- * formulário e define que a tarefa que está sendo
- * editada é `null`.
- */
 function buttonCancelarFormClick() {
   var form = document.getElementById('form-tarefa');
   alternarSidebarDireita();
@@ -196,9 +146,6 @@ function buttonCancelarFormClick() {
 }
 
 /**
- * Cria um elemento representando o botão que permite cancelar 
- * o cadastro ou a edição de uma tarefa.
- * 
  * @returns {Element}
  */
 function createButtonCancelar() {
@@ -209,9 +156,6 @@ function createButtonCancelar() {
   return btn;
 }
 
-/**
- * Alterna a visibilidade da sidebar da direita.
- */
 function alternarSidebarDireita() {
   document.getElementById('sidebar-estatisticas').classList.toggle('hidden');
   document.getElementById('sidebar-form').classList.toggle('hidden');
@@ -220,9 +164,6 @@ function alternarSidebarDireita() {
     'Estatísticas' : 'Cadastrar';
 }
 
-/**
- * Mostra a sidebar do formulário e oculta a sidebar das estatísticas.
- */
 function mostrarSidebarForm() {
   if (!document.getElementById('sidebar-estatisticas').classList.contains('hidden')) {
     document.getElementById('sidebar-estatisticas').classList.add('hidden');
@@ -234,9 +175,6 @@ function mostrarSidebarForm() {
   btnCadastrar.innerHTML = 'Estatísticas';
 }
 
-/**
- * Método que apresenta a lista das tarefas ativas e tarefas concluídas.
- */
 function apresentarTarefas() {
   var ulTarefasAtivas = document.getElementById('ul-tarefas-ativas');
   document.querySelectorAll('#ul-tarefas-ativas li').forEach(no => no.remove());
@@ -284,8 +222,6 @@ function apresentarTarefas() {
 }
 
 /**
- * O tratador do evento submit do formulário.
- * 
  * @param {*} e 
  */
 function formSubmit(e) {
@@ -310,9 +246,6 @@ function formSubmit(e) {
 }
 
 
-/**
- * Método que cria a interface do app.
- */
 function createApp() {
   manager = new TarefaManager();
 
@@ -328,15 +261,9 @@ function createApp() {
   btnCancelar.addEventListener('click', buttonCancelarFormClick);
 }
 
-/**
- * Tratador do evento DOMContentLoaded para o document.
- */
 function documentLoad() {
   createApp();
   apresentarTarefas();
 }
 
-/**
- * Define o tratador do evento DOMContentLoaded do document.
- */
 document.addEventListener('DOMContentLoaded', documentLoad);
