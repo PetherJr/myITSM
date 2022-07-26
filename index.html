@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de tarefas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="tarefa.model.js"></script>
+    <script src="tarefa.manager.js"></script>
+    <script src="app.js"></script>
+  </head>
+
+  <body>
+    <div class="main-container">
+      <header class="main-header">
+        <div class="brand">
+          <strong class="title">ITSM</strong>
+          <small>Organizer of these tasks</small>
+        </div>
+        <div>
+          <a href="https://github.com/PetherJr" title="Repositório do Github">
+            <img src="https://www.seekpng.com/png/detail/192-1923013_transparent-png-github-logo.png" height="40"
+              alt="Imagem do repositório no github">
+          </a>
+        </div>
+      </header>
+      <div class="content-container">
+        <div class="sidebar sidebar-left">
+          <header>
+            Categoria
+          </header>
+          <div class="sidebar-content">
+            <p><button>Categoria 1</button></p>
+            <p><button>Categoria 2</button></p>
+            <p><button>Categoria 3</button></p>
+            <p><button>Categoria 4</button></p>
+          </div>
+          <footer>
+            <div>
+              <strong></strong>
+            </div>
+            <small>
+            
+              </a>
+              <br />
+              Este projeto foi desenvolvido por <strong>Petherson Junior</strong>            
+              </a>.
+            </small>
+          </footer>
+        </div>
+        <div class="content">
+          <p>Painel de Tarefas:</p>
+          <div>
+            <div id="div-tarefas-ativas">
+              <h2>🔥 Tarefas ativas</h2>
+              <div>
+                <button id="btn-cadastrar">➕ Cadastrar</button>
+              </div>
+            </div>
+
+            <ul class="lista" id="ul-tarefas-ativas">
+            </ul>
+
+            <h2>✅ Tarefas concluídas</h2>
+            <ul class="lista" id="ul-tarefas-concluidas">
+            </ul>
+
+          </div>
+        </div>
+        <div id="sidebar-estatisticas" class="sidebar sidebar-right">
+          <header>
+            Estatísticas
+          </header>
+          <div class="sidebar-content">
+            Estatísticas...
+          </div>
+          <footer>
+            <small>O <strong>projeto</strong> foi desenvolvido a fins de melhor gerenciamento de atividades.</small>
+          </footer>
+        </div>
+        <div id="sidebar-form" class="sidebar sidebar-right hidden">
+          <header id="form-header">Cadastrar nova Tarefa</header>
+          <div class="sidebar-content">
+            <form id="form-tarefa">
+              <div class="form-row">
+                <label for="titulo">Tarefa <span style="color:red">*</strong></label>
+                <textarea rows="5" id="titulo" name="titulo" type="text" placeholder="Título da tarefa"
+                  required="required"></textarea>
+              </div>
+              <div class="form-row">
+                <label for="dataDeTermino">Prazo / Data de término <span style="color:red">*</span></label>
+                <input id="dataDeTermino" name="dataDeTermino" type="datetime-local" required="required">
+              </div><br>
+              <div>
+                <button type="submit" id="btn-salvar">✔ Salvar</button>
+                <button type="button" id="btn-cancelar">Cancelar</button>
+              </div>
+                             
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
