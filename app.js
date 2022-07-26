@@ -14,11 +14,8 @@ function formatarData(data) {
 }
 
 /**
- * Formata a data para string no formato do input do tipo
- * datetime-local.
- * 
- * @param {Date} data A data que será formatada.
- * @returns A data formatada como string.
+ * @param {Date} data 
+ * @returns 
  */
 function formatarDataParaInput(data) {
   var y = data.getYear() + 1900;
