@@ -1,61 +1,29 @@
-/**
- * Classe manager responsável por gerenciar os dados
- * de tarefas. 
- * 
- * Utiliza o LocalStorage para armazenamento dos dados.
- */
+
 class TarefaManager {
 
-  /**
-   * Construtor da classe. 
-   * 
-   * Define o array de tarefas e executa as tarefas:
-   * 
-   * * configuração do local storage
-   * * carregar dados do local storage para o array de tarefas
-   */
   constructor() {
     this.tarefas = [];
     this.configurarLocalStorage();
     this.carregarDados();
   }
 
-  /**
-   * Configura o local storage.
-   * 
-   * Se o item 'tarefas' não existir no local storage,
-   * então define seu valor como um array vazio
-   * (representado string JSON).
-   */
+
   configurarLocalStorage() {
     if (localStorage.getItem('tarefas') == null) {
       localStorage.setItem('tarefas', JSON.stringify([]));
     }
   }
 
-  /**
-   * Carrega dados do local storage para o array de 
-   * tarefas.
-   */
   carregarDados() {
     var dados = localStorage.getItem('tarefas');
     this.tarefas = JSON.parse(dados) || [];
     this.tarefas = this.tarefas.map(tarefa => Tarefa.fromLocalStorage(tarefa));
   }
-
-  /**
-   * Salva os dados do array de tarefas para o local storage.
-   * 
-   * Utiliza uma representação do array em JSON.
-   */
   salvarDados() {
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
 
   /**
-   * Cadastra a tarefa no array de tarefas e atualiza
-   * o local storage.
-   * 
    * @param {String} titulo 
    * @param {Date} dataDeTermino 
    */
@@ -66,9 +34,6 @@ class TarefaManager {
   }
 
   /**
-   * Altera os atributos da tarefa indicada pelo 
-   * parâmetro `id` e atualiza o local storage.
-   * 
    * @param {Number} id 
    * @param {String} titulo 
    * @param {Date} dataDeTermino 
@@ -83,8 +48,6 @@ class TarefaManager {
   }
 
   /**
-   * Econtra e retorna uma tarefa com base no seu id.
-   * 
    * @param {Number} id 
    * @returns 
    */
@@ -93,9 +56,6 @@ class TarefaManager {
   }
 
   /**
-   * Exclui uma tarefa com base no seu id. Atualiza 
-   * o local storage.
-   * 
    * @param {Number} id 
    */
   excluir(id) {
@@ -105,9 +65,6 @@ class TarefaManager {
   }
 
   /**
-   * Alterna a situação da tarefa (se está ou não concluída) e
-   * atualiza o local storage.
-   * 
    * @param {Number} id 
    */
   alternarSituacao(id) {
